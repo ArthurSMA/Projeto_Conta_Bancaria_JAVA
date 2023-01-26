@@ -47,15 +47,10 @@ public class ContaPoupanca extends Conta {
         this.saldo = saldo;
     }
 
-    public void juros(Double valor) {
-        if (valor > 0) {
-            double juros = getSaldo() * 0.10 * getMeses();
-        }
-    }
-
     public void depositar(Double valor) {
+        double rendimento = 1.50 * getMeses();
         if (valor > 0) {
-            setSaldo(getSaldo() + valor);
+            setSaldo(getSaldo() + valor + rendimento);
             System.out.println("Seu depósito foi realizado com êxito!");
         } else {
             System.out.println("Não foi possível realizar o depósito!");

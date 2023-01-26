@@ -69,12 +69,10 @@ public class AplicacaoApplication {
                 if (oc == 1) {
                     cc = new ContaCorrente(pessoa);
                     contasBancarias.add(contaC);
-                    cc.setTipoConta("Conta Corrente");
                     System.out.println("\n*** Parabéns! Sua conta foi criada com sucesso! *** \n");
                 } else if (oc == 2) {
                     cp = new ContaPoupanca(pessoa);
                     contasBancarias.add(contaP);
-                    cp.setTipoConta("Conta Poupanca");
                     System.out.println("\n*** Parabéns! Sua conta foi criada com sucesso! *** \n");
                 }
             } else if (op == 2) {
@@ -85,7 +83,7 @@ public class AplicacaoApplication {
                 if (oc == 1) {
                     System.out.println("Qual o valor deseja sacar?");
                     Double valorSaque = input.nextDouble();
-                    if (valorSaque > cc.getLimite()) {
+                    if (valorSaque > cc.getSaldo() + cc.getLimite()) {
                         System.out.println("Não é possível efetuar um saque a cima do limite determinado!");
                     } else {
                         cc.sacar(valorSaque);
@@ -141,17 +139,6 @@ public class AplicacaoApplication {
             }
 
         } while (op != 6);
-    }
-
-    private static Conta encontrarConta(int numeroConta) {
-        Conta conta = null;
-        if (contasBancarias.size() > 0) {
-            for (Conta c : contasBancarias) {
-                if (c.getNumero() == numeroConta);
-                conta = c;
-            }
-        }
-        return conta;
     }
 
     public static void listarContas() {

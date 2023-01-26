@@ -50,23 +50,21 @@ public class ContaCorrente extends Conta {
     public void depositar(Double valor) {
         if (valor > 0) {
             setSaldo(getSaldo() + valor);
-            System.out.println("Seu depósito foi realizado com êxito!");
+            System.out.println("\n***Seu depósito foi realizado com êxito!*** \n");
         } else {
-            System.out.println("Não foi possível realizar o depósito!");
+            System.out.println("\n***Não foi possível realizar o depósito!\n");
         }
     }
 
     public void sacar(Double valor) {
-        if (valor > 0 && this.getSaldo() >= valor) {
-            setSaldo(getSaldo() - valor);
-            System.out.println("Seu saque foi realizado com êxito!");
-        } else {
+        double juros = getSaldo() * 0.10 * getMeses();
+
+        if (valor > getSaldo() + getLimite()) {
             System.out.println("Não foi possível realizar o saque!");
+        } else {
+            setSaldo(juros - valor);
+            System.out.println("Seu saque foi realizado com êxito!");
         }
-    }
-
-    public void rendimento(Double valor) {
-
     }
 
     public String toString() {

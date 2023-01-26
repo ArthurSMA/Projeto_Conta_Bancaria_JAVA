@@ -44,11 +44,4 @@ public class Pessoa {
     public void setProfissao(String profissao) {
         this.profissao = profissao;
     }
-
-    public String toString() {
-        return "\nNome: " + this.getNome() +
-                "\nCPF: " + this.getCpf() +
-                "\nEndereco: " + this.getEndereco() +
-                "\nProfissao: " + this.getProfissao();
-    }
 }

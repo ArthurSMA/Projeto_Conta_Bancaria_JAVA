@@ -83,22 +83,4 @@ public class Conta {
     public void setJuros(double juros) {
         this.juros = juros;
     }
-
-    public void depositar(Double valor) {
-        if (valor > 0) {
-            setSaldo(getSaldo() + valor);
-            System.out.println("Seu depósito foi realizado com êxito!");
-        } else {
-            System.out.println("Não foi possível realizar o depósito!");
-        }
-    }
-
-    public void sacar(Double valor) {
-        if (valor > 0 && this.getSaldo() >= valor) {
-            setSaldo(getSaldo() - valor);
-            System.out.println("Seu saque foi realizado com êxito!");
-        } else {
-            System.out.println("Não foi possível realizar o saque!");
-        }
-    }
 }
