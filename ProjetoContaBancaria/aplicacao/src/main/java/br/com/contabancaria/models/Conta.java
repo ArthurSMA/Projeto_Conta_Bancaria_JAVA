@@ -7,9 +7,10 @@ public class Conta {
     private String nomeCliente;
     private int numero;
     private int numeroAgencia = 90901;
-    private double limite;
+    private int meses = 3;
+    private double limite = 0.00;
     private double saldo = 0.00;
-    private double taxa;
+    private double juros;
 
     public int getContadorDeContas() {
         return contadorDeContas;
@@ -51,6 +52,14 @@ public class Conta {
         this.numeroAgencia = numeroAgencia;
     }
 
+    public int getMeses() {
+        return meses;
+    }
+
+    public void setMeses(int meses) {
+        this.meses = meses;
+    }
+
     public double getLimite() {
         return limite;
     }
@@ -67,12 +76,12 @@ public class Conta {
         this.saldo = saldo;
     }
 
-    public double getTaxa() {
-        return taxa;
+    public double getJuros() {
+        return juros;
     }
 
-    public void setTaxa(double taxa) {
-        this.taxa = taxa;
+    public void setJuros(double juros) {
+        this.juros = juros;
     }
 
     public void depositar(Double valor) {

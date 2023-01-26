@@ -1,19 +1,26 @@
 package br.com.contabancaria.models;
 
-import br.com.contabancaria.utilitarios.Utils;
-
 public class ContaPoupanca extends Conta {
     private static int contadorDeContas = 1;
 
+    private String tipoConta = "Conta Poupança";
     private int numeroConta;
     private Pessoa pessoa;
     private double saldo;
 
     public ContaPoupanca(Pessoa pessoa) {
-        setTaxa(0);
+        setJuros(0);
         this.numeroConta = contadorDeContas;
         this.pessoa = pessoa;
         contadorDeContas += 1;
+    }
+
+    public String getTipoConta() {
+        return tipoConta;
+    }
+
+    public void setTipoConta(String tipoConta) {
+        this.tipoConta = tipoConta;
     }
 
     public int getNumeroConta() {
@@ -40,6 +47,12 @@ public class ContaPoupanca extends Conta {
         this.saldo = saldo;
     }
 
+    public void juros(Double valor) {
+        if (valor > 0) {
+            double juros = getSaldo() * 0.10 * getMeses();
+        }
+    }
+
     public void depositar(Double valor) {
         if (valor > 0) {
             setSaldo(getSaldo() + valor);
@@ -61,6 +74,7 @@ public class ContaPoupanca extends Conta {
     public String toString() {
         return "\nNumero da conta: " + this.getNumeroConta() +
                 "\nNumero da Agência: " + this.getNumeroAgencia() +
+                "\nTipo da conta: " + this.getTipoConta() +
                 "\nNome: " + this.pessoa.getNome() +
                 "\nCPF: " + this.pessoa.getCpf() +
                 "\nEndereco: " + this.pessoa.getEndereco() +

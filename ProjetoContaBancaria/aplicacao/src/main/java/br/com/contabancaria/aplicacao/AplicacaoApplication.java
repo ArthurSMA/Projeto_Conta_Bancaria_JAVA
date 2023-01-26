@@ -27,6 +27,8 @@ public class AplicacaoApplication {
         ContaPoupanca cp = null;
         contasBancarias = new ArrayList<Conta>();
 
+        System.out.println("\nSeja bem vindo!\nEscolha uma opção para continuarmos!\n");
+
         do {
             System.out.println("1 - Criar conta");
             System.out.println("2 - Sacar");
@@ -38,9 +40,14 @@ public class AplicacaoApplication {
             op = input.nextInt();
 
             if (op == 1) {
-                // Cria Conta
-                System.out.println("Qual tipo de conta deseja criar: \n1 - Corrente \n2 - Poupanca");
+                // Cria a Conta
+
+                System.out.println("\nQual tipo de conta deseja criar: \n1 - Corrente \n2 - Poupanca \n3 - Cancelar");
                 oc = input.nextInt();
+
+                if (oc == 3) {
+                    System.exit(0);
+                }
 
                 System.out.println("\nNome: ");
                 String nome = input.next();
@@ -62,48 +69,58 @@ public class AplicacaoApplication {
                 if (oc == 1) {
                     cc = new ContaCorrente(pessoa);
                     contasBancarias.add(contaC);
+                    cc.setTipoConta("Conta Corrente");
                     System.out.println("\n*** Parabéns! Sua conta foi criada com sucesso! *** \n");
                 } else if (oc == 2) {
                     cp = new ContaPoupanca(pessoa);
                     contasBancarias.add(contaP);
+                    cp.setTipoConta("Conta Poupanca");
                     System.out.println("\n*** Parabéns! Sua conta foi criada com sucesso! *** \n");
                 }
             } else if (op == 2) {
                 // Saca dinheiro da conta corrente ou da conta poupanca
-                System.out.println("Deseja sacar da conta \n1 - Corrente \n2 - Poupanca");
+
+                System.out.println("Deseja sacar da conta \n1 - Corrente \n2 - Poupanca \n3 - Cancelar");
                 oc = input.nextInt();
                 if (oc == 1) {
                     System.out.println("Qual o valor deseja sacar?");
                     Double valorSaque = input.nextDouble();
-                    cc.sacar(valorSaque);
+                    if (valorSaque > cc.getLimite()) {
+                        System.out.println("Não é possível efetuar um saque a cima do limite determinado!");
+                    } else {
+                        cc.sacar(valorSaque);
+                    }
                 } else if (oc == 2) {
                     System.out.println("Qual o valor deseja sacar?");
                     Double valorSaque = input.nextDouble();
                     cp.sacar(valorSaque);
+                } else if (oc == 3) {
                 } else {
                     System.out.println("Opcao onvalida!");
                 }
             } else if (op == 3) {
                 // Deposita dinheiro na conta corrente ou na conta poupança
-                System.out.println("Deseja depositar na conta \n1 - Corrente \n2 - Poupanca");
+
+                System.out.println("Deseja depositar na conta \n1 - Corrente \n2 - Poupanca \n3 - Cancelar");
                 oc = input.nextInt();
                 if (oc == 1) {
                     System.out.println("Qual o valor deseja depositar?");
                     Double valorDeposito = input.nextDouble();
                     cc.depositar(valorDeposito);
-                    System.out.println("Valor depositado com êxito!");
                 } else if (oc == 2) {
                     System.out.println("Qual o valor deseja depositar?");
                     Double valorDeposito = input.nextDouble();
                     cp.depositar(valorDeposito);
-                    System.out.println("Valor depositado com êxito!");
+                } else if (oc == 3) {
                 } else {
                     System.out.println("Não foi possível efetuar o depósito!");
                 }
 
             } else if (op == 4) {
                 // Verifica o saldo da conta que foi escolhida
-                System.out.println("Qual tipo da conta? \n1 - Corrente \n2 - Poupanca");
+
+                System.out.println("Digite o número da conta: ");
+                System.out.println("Qual tipo da conta? \n1 - Corrente \n2 - Poupanca \n3 - Cancelar");
                 oc = input.nextInt();
                 if (oc == 1) {
                     System.out.println("Seu saldo da conta corrente é de: " + Utils.doubleToString(cc.getSaldo()));
@@ -114,9 +131,11 @@ public class AplicacaoApplication {
                 }
             } else if (op == 5) {
                 // Lista as contas criadas durante a aplicação
+
                 listarContas();
             } else if (op == 6) {
                 // Sai da aplicação
+
                 System.out.println("Obrigado por escolher a nossa agência, volte semrpe!");
                 System.exit(0);
             }
@@ -128,8 +147,7 @@ public class AplicacaoApplication {
         Conta conta = null;
         if (contasBancarias.size() > 0) {
             for (Conta c : contasBancarias) {
-                if (c.getNumero() == numeroConta)
-                    ;
+                if (c.getNumero() == numeroConta);
                 conta = c;
             }
         }
